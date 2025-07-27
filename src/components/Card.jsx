@@ -1,25 +1,25 @@
 import {useEffect,useState} from 'react';
 import  '../style/Card.css';
 
-function Card({setCount,num})
+function Card({setCount,num,setCard})
 {
-    const[card,setCard]=useState(false);
     const[imgdata,setImgData]=useState(null);
     
-    function checkclick()
-    {
-        
-        if(card===true)
-        {
-            setCount(0);
-            
-        }
-        else
-        {
-            setCount(prev=>prev+1);
-            setCard(true);
-        }
+      function handleCardClick(id) {
+    if (clicked === true) {
+      setCount(0);
+      setCard(prev =>
+        prev.map(item => ({ ...item, clicked: false }))
+      );
+    } else {
+      setCount(prev => prev + 1);
+      setCard(prev =>
+        prev.map(item =>
+          item.id === id ? { ...item, clicked: true } : item
+        )
+      );
     }
+  }
 
     
     useEffect(()=>{
@@ -40,7 +40,7 @@ function Card({setCount,num})
         <div className="card">
             <div className="img" >
        {imgdata?.image? (<img src={imgdata.image} alt={imgdata.name} onClick={()=>{
-       checkclick();
+       handleCardClick(num);      
        }}/>)
                  :(<p>Loading....</p>)}
            </div>
