@@ -3,16 +3,23 @@ import Card from './components/Card.jsx'
 import Header from './components/Header.jsx'
 
 function App() {
- let  cards=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
-  const [count , setCount] = useState(0)
+ let  cards=[];
 
+ for(let i=1;i<=20;i++)
+ {
+    let obj={id:i,clicked:false};
+    cards.push(obj);
+ }
+  const [count , setCount] = useState(0);
+  const [card , setCard]=useState(cards);
+  
   return (
     <>
     
      <Header count={count} />
      <div className="mid-section">
-       {cards.map((item)=>
-        (<Card key={item} setCount={setCount} num={item}/>))
+       {card.map((item)=>
+        (<Card key={item.id} setCount={setCount} num={item.id} clicked={item.clicked} setCard={setCard}/>))
        }
      </div>
      
