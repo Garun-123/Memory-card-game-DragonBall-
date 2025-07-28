@@ -28,6 +28,10 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-image: url("https://wallpapercave.com/wp/wp3506597.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
 }
 
 h1 {
