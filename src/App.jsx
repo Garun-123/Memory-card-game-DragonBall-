@@ -31,18 +31,29 @@ const [loading, setLoading] = useState(true);
       .catch(err => console.error(err));
   }, []);
 
+function shuffleArray(array)     
+{
+  let newArray=[...array];
+  for (let i = array.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+}
+return newArray;
+} 
+
 function handleCardClick(id) {
   setCards(prevCards => {
     const currentCard = prevCards.find(card => card.id === id);
 
     if (currentCard.clicked) {
       setCount(0);
-      return prevCards.map(card => ({ ...card, clicked: false }));
+        return shuffleArray(prevCards.map(card => ({ ...card, clicked: false })));
     } else {
       setCount(prev => prev + 1);
-      return prevCards.map(card =>
+      const updatedCards= prevCards.map(card =>
         card.id === id ? { ...card, clicked: true } : card
       );
+       return shuffleArray(updatedCards);
     }
   });
 }
